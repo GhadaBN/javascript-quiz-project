@@ -7,7 +7,7 @@ class Question {
   }
 
   shuffleChoices() {
-    console.log(this.choices);
+    // console.log(this.choices);
     for (let i = 0; i < this.choices.length; i++) {
       let randomIndex = Math.floor(Math.random() * this.choices.length);
       this.choices.push(this.choices[randomIndex]);
