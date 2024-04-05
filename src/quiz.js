@@ -17,7 +17,7 @@ class Quiz {
 
   shuffleQuestions() {
     for (let i = 0; i < this.questions.length; i++) {
-      let randomIndex = Math.floor(Math.random * this.questions.length);
+      let randomIndex = Math.floor(Math.random() * this.questions.length);
       this.questions.push(this.questions[randomIndex]);
       this.questions.splice(this.questions[randomIndex], 1);
     }
@@ -25,7 +25,7 @@ class Quiz {
   }
 
   checkAnswer(answer) {
-    if ((this.answer = true)) {
+    if (answer === this.getQuestion().answer) {
       this.correctAnswers += 1;
     }
   }
@@ -53,19 +53,3 @@ class Quiz {
     return sumDifficulty / this.questions.length;
   }
 }
-
-// return this.questions[0];
-
-// filterQuestionsByDifficulty(difficulty) {
-//   const filteredQuestions = this.questions.filter((question) => {
-//     return question.difficulty === difficulty;
-//   });
-//   return filteredQuestions;
-// }
-// if (question.difficulty === 2) {
-//   return this.questions[0];
-// }
-
-// if (question.difficulty === 3) {
-//   return this.questions[0];
-// }

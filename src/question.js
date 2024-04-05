@@ -30,3 +30,7 @@ class Question {
 // let example = new Question("hello", ["a", "b"], "a", 1);
 
 // console.log(example.shuffleChoices());
+
+const newQuestion = new Question("howdy", ["a,b,c,d"], "a", 1);
+
+// console.log(newQuestion);
