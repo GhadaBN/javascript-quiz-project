@@ -16,17 +16,3 @@ class Question {
     return this.choices;
   }
 }
-//RANDOM NOTES
-
-// shuffleArr.push(this.choices[randomIndex]);
-// console.log(shuffleArr);
-// return shuffleArr;
-
-// 2. shuffleChoices()
-
-//const randomIndex = Math.floor(Math.random() * this.choices.length);
-//console.log(randomIndex);
-
-// let example = new Question("hello", ["a", "b"], "a", 1);
-
-// console.log(example.shuffleChoices());

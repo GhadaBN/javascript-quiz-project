@@ -72,8 +72,24 @@ document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
 
   /************  TIMER  ************/
-
-  let timer;
+  let timer = null;
+  function countDown(remainingTime) {
+    timer = setInterval(() => {
+      const minutes = Math.floor(remainingTime / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (remainingTime % 60).toString().padStart(2, "0");
+      // Display the time remaining in the time remaining container
+      const timeRemainingContainer = document.getElementById("timeRemaining");
+      timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+      remainingTime--;
+      if (remainingTime < 0) {
+        clearInterval(timer);
+        showResults();
+      }
+    }, 1000);
+  }
+  countDown(quiz.timeRemaining);
 
   /************  EVENT LISTENERS  ************/
 
@@ -112,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(quiz.questions, quiz.currentQuestionIndex);
 
     const progressPercentage =
-      ((quiz.currentQuestionIndex + 1) / quiz.questions.length) * 100;
+      (quiz.currentQuestionIndex / quiz.questions.length) * 100;
     progressBar.style.width = `${progressPercentage}%`;
     // This value is hardcoded as a placeholder
 
@@ -189,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`; // This value is hardcoded as a placeholder
+    clearInterval(timer);
   }
 
   // resettButtonHandler();
@@ -198,7 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
     endView.style.display = "flex";
     quiz.currentQuestionIndex = 0;
     quiz.correctAnswers = 0;
+    quiz.timeRemaining = quizDuration;
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
     quiz.shuffleQuestions();
     showQuestion();
+    countDown(quiz.timeRemaining);
   });
 });
